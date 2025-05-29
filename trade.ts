@@ -1,7 +1,7 @@
 import { KiteConnect } from "kiteconnect";
 
 const apiKey = "q5nkebkca3h1ibj0";
-let accessToken = "NKnQU7iap4sc388MZi31d9yR4SbxBd1h";
+let accessToken = "Dummy";
 const kc = new KiteConnect({ api_key: apiKey });
 
  export async function placeOrder(tradingsymbol : string, quantity :number, type :"BUY" | "SELL") {
