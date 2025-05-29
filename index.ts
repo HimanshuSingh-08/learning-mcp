@@ -1,8 +1,12 @@
 import { KiteConnect } from "kiteconnect";
 
-const apiKey = "q5nkebkca3h1ibj0";
-const apiSecret = "yxswl1qw2x3lik3t8aocls4rpsxckvak";
-const requestToken = "z8eIwHy0ylFKGk322GnZXy6BHUhS2hPX";
+const apiKey = "";
+const apiSecret = "";
+ const requestToken = ""; 
+// Per req/token it will get expired after one req
+
+
+let accessToken = "";
 
 const kc = new KiteConnect({ api_key: apiKey });
 
@@ -22,6 +26,8 @@ async function generateSession() {
   try {
     const response = await kc.generateSession(requestToken, apiSecret);
     kc.setAccessToken(response.access_token);
+    console.log(response.access_token);
+    
     console.log("Session generated:", response);
   } catch (err) {
     console.error("Error generating session:", err);
@@ -30,7 +36,14 @@ async function generateSession() {
 
 async function getProfile() {
   try {
-    const profile = await kc.getProfile();
+    const profile = await kc.placeOrder("regular", {
+      exchange :"NSE",
+      tradingsymbol:"YESBANK",
+      transaction_type:"BUY",
+      quantity:1,
+      product :"CNC",
+      order_type :"MARKET"
+    });
     console.log("Profile:", profile);
   } catch (err) {
     console.error("Error getting profile:", err);
